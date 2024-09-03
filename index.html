@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitmap AI Advisor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Bitmap AI Advisor</h1>
+        <p>I'm here to help you choose the perfect bitmap</p>
+        <div class="hackathon-edition">** For Hackathon Demonstration Only **</div>
+        <input type="text" id="questionInput" placeholder="Type your question here..." autofocus>
+        <div id="response" class="hidden"></div>
+    </div>
+
+    <script>
+        const questionInput = document.getElementById('questionInput');
+        const responseDiv = document.getElementById('response');
+
+        questionInput.addEventListener('keypress', async (event) => {
+            if (event.key === 'Enter') {
+                const question = questionInput.value.trim().toLowerCase();
+                if (question.includes('bitmap') || question.includes('bitmaps') && 
+                    (question.includes('buy') || question.includes('get') || question.includes('recommend') || question.includes('help') || question.includes('choose') || question.includes('perfect'))) {
+                    responseDiv.classList.remove('hidden');
+                    let loadingMessages = [
+                        "Searching marketplace...",
+                        "Researching Bitmap Whitepaper...",
+                        "Evaluating Digital Matter Theory...",
+                        "Consulting with pixel experts...",
+                        "Analyzing bit-depth ratios...",
+                        "Checking market trends...",
+                        "Determining rarity..."
+                    ];
+                    loadingMessages.sort(() => Math.random() - 0.5);
+                    let messageIndex = 0;
+                    responseDiv.textContent = loadingMessages[0];
+                    let loadingInterval = setInterval(() => {
+                        messageIndex = (messageIndex + 1) % loadingMessages.length;
+                        responseDiv.textContent = loadingMessages[messageIndex];
+                    }, 1500);
+                    try {
+                        const response = await fetch('/api/bitmap-recommendation');
+                        const recommendation = await response.text();
+                        console.log("AI Response:", recommendation); // Add this line
+                        clearInterval(loadingInterval);
+                        responseDiv.textContent = "Recommendations Ready!";
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                        responseDiv.innerHTML = recommendation; // Changed from textContent to innerHTML
+                    } catch (error) {
+                        clearInterval(loadingInterval);
+                        responseDiv.textContent = "Sorry, I couldn't generate a recommendation at this time.";
+                    }
+                } else {
+                    responseDiv.classList.remove('hidden');
+                    responseDiv.textContent = "I'm sorry, I can only answer questions about buying or recommending bitmaps.";
+                }
+                questionInput.value = ''; // Clear the input after processing
+                questionInput.style.display = 'none'; // Hide the input after processing
+            }
+        });
+    </script>
+</body>
+</html>

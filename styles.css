@@ -1,0 +1,80 @@
+body {
+    font-family: 'Share Tech Mono';
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #f4900c;
+}
+.hackathon-edition {
+    color: darkgrey;
+    font-size: 0.85em;
+    margin-bottom: 20px;
+}
+input, #response {
+    width: 100%;
+    box-sizing: border-box;
+}
+input {
+    padding: 10px;
+    max-width: 60%;
+    margin-bottom: 20px;
+    background-color: #1a1a1a;
+    border: 1px solid #f4900c;
+    color: #ffffff;
+    font-family: 'Share Tech Mono', monospace;
+}
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #f4900c;
+}
+
+#response {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+a {
+    color: #f4900c;
+    text-decoration: none;
+    transition: font-weight 0.3s ease;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+.bitmap-image {
+    max-width: 35%;
+    height: auto;
+}
