@@ -4,7 +4,7 @@ const { fetchBitmapListings } = require('./okx-bitmap-listings');
 const { getAIRecommendation } = require('./bitmap-ai-advisor');
 
 const app = express();
-const port = process.env.PORT || 8080;  // Change this line
+const port = process.env.PORT || 8080;
 
 // Serve static files from the current directory
 app.use(express.static(__dirname));
@@ -32,9 +32,9 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong!');
 });
 
-// Modify the listen call to include error handling
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+// Modify the listen call to bind to 0.0.0.0
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running on http://0.0.0.0:${port}`);
 }).on('error', (err) => {
     console.error('Failed to start server:', err);
 });
